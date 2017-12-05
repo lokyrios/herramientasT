@@ -1,0 +1,24 @@
+- Procedimento para migrar archivos .DBF para .DTC
+I.	Borrar todos archivos *.CDX del directorio SYSTEM.
+II.	Renombrar el archivo SIGAMAT.EMP (en el diretorio SYSTEM) para SIGAMAT.DBF y el archivo PROFILE.USR (del Directorio PROFILE) para PROFILE.DBF.
+III.	Ingresar al APSDU y seguir el procedimento siguiente:
+- Cliquear en "FILE / IMPORT"
+- Seleccionar en combo RDD SOURCE "DBF (DBFCDXADS/DBFCDXAX)) mascara *.DBF"
+- Seleccionar en combo CHOSE DIRECTORY "\SYSTEM\"
+- Seleccionar en combo RDD TARGET "Ctree (CTREECDX)"
+- Seleccionar en combo CHOOSE DIRECTORY "\SYSTEM\"
+- Cliquear en "AVANZAR";
+- Seleccionar las tablas a migrar y cliquear en "FINALIZAR".
+IV.	Renombrar el archivo SIGAMAT.DTC (Del diretório SYSTEM) a SIGAMAT.EMP y el archivo PROFILE.DTC (Diretório PROFILE) a PROFILE.USR.
+Se deja la configuracion del appserver.ini para poder realizar esto:
+[Enviroment]
+SourcePath=E:\Totvs10\mp10mig\Protheus\apo\
+RootPath=E:\Totvs10\mp10mig\Protheus_Data\
+StartPath=\system\
+x2_path=
+RpoDb=SQL
+RpoLanguage=Spanish
+RpoVersion=101
+LocalFiles=CTREE
+localdbextension=.dtc
+TopMemoMega=1

@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="remito">
+		<xs:annotation>
+			<xs:documentation>Schema de validacao do remito eletronico, utilizado para validar o XML enviado pelo ERP ao TSS, e segue a obrigatoriedade do registro tipo 2 de REMITO do layout do arquivo TXT desenvolvido pela ARBA.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence minOccurs="1" maxOccurs="1">
+				<xs:element name="infremito" type="tcinfremito" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="infdestinatario" type="tcdestinatario" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="infdestino" type="tcdestino" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="inforigen" type="tcorigen" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="infrecorrido" type="tcrecorrido" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="productos" type="tcproductos" minOccurs="1" maxOccurs="1"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="tcinfremito">
+		<xs:sequence minOccurs="1" maxOccurs="1">
+			<xs:element name="fecha_emision" type="tsdate" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codigo_unico" type="tscodigounico" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="fecha_salida_transporte" type="tsdate" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="hora_salida_transporte" type="tstime" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="sujeto_generador" type="tssujetogenerador" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tcdestinatario">
+		<xs:sequence minOccurs="1" maxOccurs="1">
+			<xs:element name="destinatario_consumidor_final" type="tsyesno" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="destinatario_tipo_documento" type="tstipodocumento" minOccurs="0"/>
+			<xs:element name="destinatario_documento" type="tsdocumento" minOccurs="0"/>
+			<xs:element name="destinatario_cuit" type="tscuit" minOccurs="0"/>
+			<xs:element name="destinatario_razon_social" type="tsrazon" minOccurs="0"/>
+			<xs:element name="destinatario_tenedor" type="tsyesno" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tcdestino">
+		<xs:sequence minOccurs="1" maxOccurs="1">
+			<xs:element name="destino_domicilio_calle" type="tscalle" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="destino_domicilio_numero" type="tsnumero" minOccurs="0"/>
+			<xs:element name="destino_domicilio_comple" type="tscomple" minOccurs="0"/>
+			<xs:element name="destino_domicilio_piso" type="tspiso" minOccurs="0"/>
+			<xs:element name="destino_domicilio_dto" type="tsdto" minOccurs="0"/>
+			<xs:element name="destino_domicilio_barrio" type="tsbarrio" minOccurs="0"/>
+			<xs:element name="destino_domicilio_codigopostal" type="tscodigopostal" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="destino_domicilio_localidad" type="tslocalidad" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="destino_domicilio_provincia" type="tsprovincia" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="proprio_destino_domicilio_codigo" type="tspropriodestinodomiciliocodigo" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tcorigen">
+		<xs:sequence minOccurs="1" maxOccurs="1">
+			<xs:element name="entrega_domicilio_origen" type="tsyesno" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="origen_cuit" type="tscuit" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="origen_razon_social" type="tsrazon" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="emisor_tenedor" type="tsyesno" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="origen_domicilio_calle" type="tscalle" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="origen_domicilio_numero" type="tsnumero" minOccurs="0"/>
+			<xs:element name="origen_domicilio_comple" type="tscomple" minOccurs="0"/>
+			<xs:element name="origen_domicilio_piso" type="tspiso" minOccurs="0"/>
+			<xs:element name="origen_domicilio_dto" type="tsdto" minOccurs="0"/>
+			<xs:element name="origen_domicilio_barrio" type="tsbarrio" minOccurs="0"/>
+			<xs:element name="origen_domicilio_codigopostal" type="tscodigopostal" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="origen_domicilio_localidad" type="tslocalidad" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="origen_domicilio_provincia" type="tsprovincia" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tcrecorrido">
+		<xs:sequence minOccurs="1" maxOccurs="1">
+			<xs:element name="transportista_cuit" type="tscuit" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="tipo_recorrido" type="tstiporecorrido" minOccurs="0"/>
+			<xs:element name="recorrido_localidad" type="tslocalidad" minOccurs="0"/>
+			<xs:element name="recorrido_calle" type="tscalle" minOccurs="0"/>
+			<xs:element name="recorrido_ruta" type="tsruta" minOccurs="0"/>
+			<xs:element name="patente_vehiculo" type="tspatente" minOccurs="0"/>
+			<xs:element name="patente_acoplado" type="tspatente" minOccurs="0"/>
+			<xs:element name="producto_no_term_dev" type="tsyesno" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="importe" type="tstam8dig2" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tcproductos">
+		<xs:sequence minOccurs="1" maxOccurs="1">
+			<xs:element name="producto" type="tcinfproducto" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tcinfproducto">
+		<xs:sequence minOccurs="1" maxOccurs="1">
+			<xs:element name="codigo_unico_producto" type="tscodigounicoproducto" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="rentas_codigo_unidad_medida" type="tsrentascodunidadmedida" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cantidad" type="tstam13dig2" minOccurs="1"/>
+			<xs:element name="proprio_codigo_producto" type="tspropiocodigoproducto" minOccurs="1"/>
+			<xs:element name="proprio_descripcion_producto" type="tspropiodescripcionproducto" minOccurs="1"/>
+			<xs:element name="proprio_descripcion_unidad_medida" type="tspropiodescripcionunidademedida" minOccurs="1"/>
+			<xs:element name="cantidad_ajustada" type="tstam13dig2" minOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="tscodigounico">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="16"/>
+			<xs:maxLength value="16"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tssujetogenerador">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="E|D"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tstime">
+		<xs:restriction base="xs:time"/>
+	</xs:simpleType>
+	<xs:simpleType name="tsdate">
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="tsdocumento">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="11"/>
+			<xs:whiteSpace value="preserve"/>
+			<xs:pattern value="[0-9]{11}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tstipodocumento">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="3"/>
+			<xs:whiteSpace value="preserve"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tspropriodestinodomiciliocodigo">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="20"/>
+			<xs:whiteSpace value="preserve"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tscomple">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="5"/>
+			<xs:whiteSpace value="preserve"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tspiso">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="3"/>
+			<xs:whiteSpace value="preserve"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tsdto">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="4"/>
+			<xs:whiteSpace value="preserve"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tscodigopostal">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="8"/>
+			<xs:whiteSpace value="preserve"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tsprovincia">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="1"/>
+			<xs:pattern value="[A-H]{1}|[J-N]{1}|[P-Z]{1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tsbarrio">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="30"/>
+			<xs:whiteSpace value="preserve"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tscuit">
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse"/>
+			<xs:maxLength value="11"/>
+			<xs:pattern value="[0-9]{11}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tsrazon">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+			<xs:whiteSpace value="preserve"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tsnumero">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="50"/>
+			<xs:whiteSpace value="preserve"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tstiporecorrido">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="U|R|M| "/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tslocalidad">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+			<xs:whiteSpace value="preserve"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tscalle">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="40"/>
+			<xs:whiteSpace value="preserve"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tsruta">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="40"/>
+			<xs:whiteSpace value="preserve"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tspatente">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="6"/>
+			<xs:maxLength value="7"/>
+			<xs:whiteSpace value="preserve"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tsyesno">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="1|2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tstam8dig2">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="10"/>
+			<xs:fractionDigits value="2"/>
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tscodigounicoproducto">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="6"/>
+			<xs:whiteSpace value="preserve"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tsrentascodunidadmedida">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="1|2|3|4|5|6|7"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tspropiocodigoproducto">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="25"/>
+			<xs:whiteSpace value="preserve"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tspropiodescripcionproducto">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="40"/>
+			<xs:whiteSpace value="preserve"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tspropiodescripcionunidademedida">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="20"/>
+			<xs:whiteSpace value="preserve"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tstam13dig2">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="15"/>
+			<xs:fractionDigits value="2"/>
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
